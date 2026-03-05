@@ -15,6 +15,7 @@ dist/
 pip-wheel-metadata/
 wheelhouse/
 
+
 # Virtual environments
 venv/
 odoo/
