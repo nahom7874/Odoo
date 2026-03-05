@@ -1,0 +1,70 @@
+# Git ignore for Odoo project
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+pip-wheel-metadata/
+wheelhouse/
+
+# Virtual environments
+venv/
+odoo/
+ENV/
+env/
+.venv/
+venv.bak/
+
+# Pyenv
+.python-version
+
+# IDEs
+.vscode/
+.idea/
+
+# macOS / Windows
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs and databases
+*.log
+*.sqlite3
+*.db
+*.db-journal
+
+# Test / coverage
+.tox/
+.coverage
+.pytest_cache/
+coverage.xml
+htmlcov/
+
+# Node
+node_modules/
+
+# Odoo specific
+# Filestore created by Odoo (data directory)
+filestore/
+# Session files, pid files, local logs
+*.pid
+odoo.log
+*.swo
+*.swp
+
+# Environment / secrets
+.env
+.env.*
+secrets.yml
+
+# Editor swap / backup
+*~
+.#*
