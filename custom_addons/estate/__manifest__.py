@@ -9,8 +9,10 @@
     'category': 'Real Estate',
     'depends': ['base'],
     'data': [
+        'security/ir.model.access.csv',
         # we will add XML files here later
     ],
     'installable': True,
     'application': True,
+
 }
