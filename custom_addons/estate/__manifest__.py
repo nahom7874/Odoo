@@ -10,6 +10,7 @@
     'depends': ['base'],
     'data': [
         'security/ir.model.access.csv',
+        'view/estate_property_views.xml',
         # we will add XML files here later
     ],
     'installable': True,
