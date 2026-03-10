@@ -3,7 +3,7 @@
 
 <!-- list VIEW -->
 <record id="view_estate_property_list" model="ir.ui.view">
-        <field name="name"><estate class="property list"></estate></field>
+        <field name="name">estate.property.list</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
             <list>
@@ -47,8 +47,9 @@
 
 </record>
 <!--menuitem-->
-<menuitem id="estate_menu_root" name="Estate"/>
+<menuitem id="estate_menu_root" name="Estate">
 <!--sub menuitem-->
-<menuitem id="estate_menu_property" name="Properties" parent="estate_menu_root" action="action_estate_property"/>
+<menuitem id="estate_menu_property" name="Properties"  action="action_estate_property"/>
+</menuitem>
 
 </odoo>
