@@ -7,10 +7,11 @@
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name"/>
-                <field name="expected_price"/>
-                <field name="bedrooms"/>
-                <field name="garden"/>
+                <field name="name" width="250"/>
+                <field name="bedrooms" width="80" class="text-end"/>
+                <field name="garden" width="80" />
+                <field name="expected_price" width="120" class="text-end"/>
+                <field name="date_availability"  string="Availability Date" width="120" />
             </list>
         </field>
 </record>
@@ -20,22 +21,42 @@
         <field name="name">estate.property.form</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
-            <form>
-                <sheet>
-                    <group>
+        <form string="Property">
+            <sheet>
+               <group> 
+                     <group>
                         <field name="name"/>
                         <field name="description"/>
                         <field name="expected_price"/>
                         <field name="selling_price"/>
+                    </group> 
+                    <group>   
                         <field name="bedrooms"/>
                         <field name="living_area"/>
-                        <field name="garden"/>
-                        <field name="garden_area"/>
-                        <field name="garden_orientation"/>
+                        <field name="date_availability"/>
+                        <field name="state"/>
                     </group>
-                </sheet>
-            </form>
-        </field>
+                </group >   
+                <notebook>
+                    <page string="Garden">
+                        <group>
+                            <field name="garage"/>
+                            <field name="garden"/>
+                            <field name="garden_area"/>
+                            <field name="garden_orientation"/>
+                        </group>
+                    </page> 
+
+                </notebook>  
+                  
+            </sheet>
+            <chatter position="bottom">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+            </chatter>  
+        </form>
+     </field>
  </record>
 
 
@@ -47,9 +68,10 @@
 
 </record>
 <!--menuitem-->
-<menuitem id="estate_menu_root" name="Estate">
+<menuitem id="estate_menu_root" name="Estate"/>
 <!--sub menuitem-->
-<menuitem id="estate_menu_property" name="Properties"  action="action_estate_property"/>
-</menuitem>
+<menuitem id="estate_ads_property" name="Advertisements" parent="estate_menu_root"/>
+    <menuitem id="estate_menu_property" name="Properties"  action="action_estate_property" parent="estate_ads_property"/>
+
 
 </odoo>
