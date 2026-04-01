@@ -7,11 +7,14 @@
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name" width="250"/>
-                <field name="bedrooms" width="80" class="text-end"/>
-                <field name="garden" width="80" />
-                <field name="expected_price" width="120" class="text-end"/>
-                <field name="date_availability"  string="Availability Date" width="120" />
+                <field name="name" string="Title" optional="show"/>
+                <field name="postcode" optional="show"/>
+                <field name="living_area"  string="Living Area (sqm)" optional="show" /> 
+                <field name="selling_price" />
+                <field name="bedrooms" optional="show" />
+                <field name="garden"  optional="show"/>
+                <field name="expected_price" />
+                <field name="date_availability"  string="Availability Date" optional="show"/>
             </list>
         </field>
 </record>
@@ -25,7 +28,8 @@
             <sheet>
                <group> 
                      <group>
-                        <field name="name"/>
+                        <field name="name" string="Title"/>
+                        <field name="postcode"/>
                         <field name="description"/>
                         <field name="expected_price"/>
                         <field name="selling_price"/>
@@ -58,6 +62,22 @@
         </form>
      </field>
  </record>
+ <record id="view_estate_property_search" model="ir.ui.view">
+        <field name="name">estate.property.search</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Title"/>
+                <field name="expected_price" string="Expected Price"/>
+                <field name="bedrooms" string="Bedrooms"/>
+                <field name="living_area" string="Living Area" filter_domain="[('living_area', '>=', self)]"/>
+                <separator/>
+                <filter name="filter_available" string="Available" domain="[('state','=','available')]"/>
+                <filter name="filter_sold" string="Sold" domain="[('state','=','sold')]"/>
+                
+            </search>
+        </field>
+ </record>       
 
 
 <!--action-->
