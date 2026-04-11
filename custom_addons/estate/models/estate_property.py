@@ -21,6 +21,7 @@ class EstateProperty(models.Model):
     state=fields.Selection([
         ("new","New"),("offer_received","Offer Received"),("offer_accepted","Offer Accepted"),("sold","Sold"),("canceled","Canceled")
     ], default="new", tracking=True, required=True)
+    property_type_id=fields.Many2one("estate.property.type", string="Property Type", required=True)
    
 
    
