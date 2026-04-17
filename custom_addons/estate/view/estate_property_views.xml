@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-<!-- list VIEW -->
+<!-- list VIEW for Properties -->
 <record id="view_estate_property_list" model="ir.ui.view">
         <field name="name">estate.property.list</field>
         <field name="model">estate.property</field>
@@ -20,7 +20,7 @@
         </field>
 </record>
 
-    <!-- FORM VIEW -->
+    <!-- FORM VIEW for Properties -->
  <record id="view_estate_property_form" model="ir.ui.view">
         <field name="name">estate.property.form</field>
         <field name="model">estate.property</field>
@@ -31,6 +31,7 @@
                      <group>
                         <field name="name" string="Title"/>
                          <field name="property_type_id"/> 
+                            <field name="tag_ids" widget="many2many_tags" options="{'no_create': True}"/>
                         <field name="postcode"/>
                         <field name="description"/>
                         <field name="expected_price"/>
@@ -64,6 +65,7 @@
         </form>
      </field>
  </record>
+ <!-- search VIEW for Properties -->
  <record id="view_estate_property_search" model="ir.ui.view">
     <field name="name">estate.property.search</field>
     <field name="model">estate.property</field>
@@ -90,6 +92,7 @@
         </search>
     </field>
 </record>
+<!-- list VIEW for Property Types -->
 <record id="view_estate_property_type_list" model="ir.ui.view">
     <field name="name">estate.property.type.list</field>
     <field name="model">estate.property.type</field>
@@ -99,6 +102,7 @@
         </list>
     </field>
 </record>
+<!-- FORM VIEW for Property Types -->
 <record id="view_estate_property_type_form" model="ir.ui.view">
     <field name="name">estate.property.type.form</field>
     <field name="model">estate.property.type</field>
@@ -112,21 +116,53 @@
         </form>
     </field>
 </record>
+<!-- list VIEW for Property Tags -->
+<record id="view_estate_property_tag_list" model="ir.ui.view">
+    <field name="name">estate.property.tag.list</field>
+    <field name="model">estate.property.tag</field>
+    <field name="arch" type="xml">
+        <list string="Property Tags">
+            <field name="name"/>
+        </list>
+    </field>
+</record>
+<!-- FORM VIEW for Property Tags -->
+<record id="view_estate_property_tag_form" model="ir.ui.view">
+    <field name="name">estate.property.tag.form</field>
+    <field name="model">estate.property.tag</field>
+    <field name="arch" type="xml">
+        <form string="Property Tag">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
    
 
 
-<!--action-->
+<!--action for properties-->
 <record id="action_estate_property" model="ir.actions.act_window">
     <field name="name">Properties</field>
     <field name="res_model">estate.property</field>
     <field name="view_mode">list,form</field>   
 
 </record>
+<!--action for property types-->
 <record id="action_estate_property_type" model="ir.actions.act_window">
     <field name="name">Property Types</field>
     <field name="res_model">estate.property.type</field>
     <field name="view_mode">list,form</field>
 </record>
+<!--action for property tags-->
+<record id="action_estate_property_tag" model="ir.actions.act_window">
+    <field name="name">Property Tags</field>
+    <field name="res_model">estate.property.tag</field>
+    <field name="view_mode">list,form</field>
+</record>
+
 <!--menuitem-->
 <menuitem id="estate_menu_root" name="Estate"/>
 <!--sub menuitem-->
@@ -138,7 +174,11 @@
 <menuitem id="estate_menu_property_type" 
           name="Property Types" 
           parent="estate_menu_configuration" 
-          action="action_estate_property_type"/>    
+          action="action_estate_property_type"/>   
+<menuitem id="estate_menu_property_tag" 
+          name="Property Tags" 
+          parent="estate_menu_configuration" 
+          action="action_estate_property_tag"/>           
 
 
 </odoo>
