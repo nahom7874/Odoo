@@ -134,7 +134,7 @@
 <menuitem id="estate_menu_property" name="Properties"  action="action_estate_property" parent="estate_ads_property"/>
 <menuitem id="estate_menu_configuration" name="Settings" parent="estate_menu_root"/>
 
-<!-- 5. The Action under Settings (We will build this model next!) -->
+
 <menuitem id="estate_menu_property_type" 
           name="Property Types" 
           parent="estate_menu_configuration" 
