@@ -13,6 +13,7 @@
                 <field name="tag_ids" widget="many2many_tags"/>
                 <field name="bedrooms" optional="show"/>
                 <field name="living_area"/>
+                <field name="total_area" string="Total Area (sqm)"/>
                 <field name="expected_price"/>
                 <field name="selling_price"/>
                 <field name="date_availability" optional="hide"/>
@@ -46,6 +47,7 @@
                                 <field name="description"/>
                                 <field name="bedrooms"/>
                                 <field name="living_area"/>
+                                <field name="total_area"/>
                                 <field name="garage"/>
                                 <field name="garden"/>
                                 <field name="garden_area" invisible="not garden"/>
@@ -57,8 +59,12 @@
                             <field name="offer_ids">
                                 <list editable="bottom">
                                     <field name="partner_id"/>
+                                    <field name="date_deadline"/>
+                                    <field name="validity"/>
                                     <field name="price"/>
                                     <field name="status"/>
+                                    <button name="action_accept" type="object" icon="fa-check" title="Accept"/>
+                                    <button name="action_refuse" type="object" icon="fa-times" title="Refuse"/>
                                 </list>
                             </field>
                         </page>
@@ -112,18 +118,36 @@
             <list string="Property Tags" editable="bottom"><field name="name"/><field name="color"/></list>
         </field>
     </record>
-    <record id="view_estate_property_offer_list" model="ir.ui.view">
+
+ <record id="view_estate_property_offer_list" model="ir.ui.view">
     <field name="name">estate.property.offer.list</field>
     <field name="model">estate.property.offer</field>
     <field name="arch" type="xml">
         <list string="Offers">
             <field name="price"/>
             <field name="partner_id"/>
-            <field name="property_id"/> <!-- Now we can see the house name! -->
+            <field name="property_id"/> 
             <field name="status"/>
         </list>
+    </field>    
+ </record>     
+ <record id="view_estate_property_offer_form" model="ir.ui.view">
+    <field name="name">estate.property.offer.form</field>
+    <field name="model">estate.property.offer</field>
+    <field name="arch" type="xml">
+        <form string="Offer">
+            <group>
+                <field name="partner_id"/>
+                <field name="price"/>
+                <field name="validity"/>
+                <field name="date_deadline"/>
+                <field name="status"/>
+            </group>
+        </form>
     </field>
-</record>
+</record>    
+   
+
 
     <!-- 5. ACTIONS -->
     <record id="action_estate_property" model="ir.actions.act_window">
@@ -142,15 +166,13 @@
         <field name="name">Property Tags</field>
         <field name="res_model">estate.property.tag</field>
         <field name="view_mode">list,form</field>
-
     </record>
-    <record id="action_estate_property_offer" model="ir.actions.act_window">
+ <record id="action_estate_property_offer" model="ir.actions.act_window">
     <field name="name">Property Offers</field>
     <field name="res_model">estate.property.offer</field>
     <field name="view_mode">list,form</field>
-    <!-- This tells Odoo to group them by property when the list opens -->
-    <field name="context">{'search_default_property_id': 1}</field>
-</record>
+   <field name="context">{'search_default_property_id': 1}</field>
+ </record>
 
     <!-- 6. MENUS -->
     <menuitem id="estate_menu_root" name="Estate"/>
