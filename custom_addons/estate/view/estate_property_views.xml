@@ -38,6 +38,7 @@
                         <group>
                             <field name="date_availability"/>
                             <field name="expected_price"/>
+                            <field name="best_price" readonly="1"/>
                             <field name="selling_price"/>
                         </group>
                     </group>
@@ -57,7 +58,7 @@
                         <!-- I MOVED THE OFFERS HERE -->
                         <page string="Offers">
                             <field name="offer_ids">
-                                <list editable="bottom">
+                                <list >
                                     <field name="partner_id"/>
                                     <field name="date_deadline"/>
                                     <field name="validity"/>

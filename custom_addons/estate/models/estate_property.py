@@ -8,6 +8,7 @@ class EstateProperty(models.Model):
     description=fields.Text(string="Description")
     date_availability=fields.Date(string="Available from", default=fields.Date.today, copy=False)
     expected_price=fields.Float(string="Expected Price",required=True, tracking=True)
+    best_price=fields.Float(string="Best Offer", readonly=True, copy=False)
     selling_price=fields.Float(string="Selling Price",readonly=True,copy=False )
     bedrooms=fields.Integer(string="Bedrooms",default=2)
     living_area=fields.Integer(string="Living Area (sqm)", help="Total living area in square meters")
@@ -31,7 +32,15 @@ class EstateProperty(models.Model):
     def _compute_total_area(self):
       for record in self:
         record.total_area = record.living_area + record.garden_area
-    
+        store=True
+    @api.onchange("garden")
+    def _onchange_garden(self):
+       if self.garden:
+          self.garden_area=10
+          self.garden_orientation="north"
+       else:
+            self.garden_area=0
+            self.garden_orientation=False   
 
    
    
